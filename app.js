@@ -28,7 +28,7 @@ class WorkLogApp {
 
   async loadData() {
     try {
-      const response = await fetch(DATA_URL + '?t=' + Date.now());
+      const response = await fetch(DATA_URL + '?_=' + Date.now(), { cache: 'no-store' });
       if (!response.ok) throw new Error('Failed to load data');
       const data = await response.json();
       this.entries = data.entries || [];
@@ -42,6 +42,15 @@ class WorkLogApp {
         </div>
       `;
     }
+  }
+
+  async refreshData() {
+    const btn = document.getElementById('reload-btn');
+    if (btn) btn.textContent = 'Loading...';
+    await this.loadData();
+    this.setupFilters();
+    this.render();
+    if (btn) btn.textContent = 'Reload';
   }
 
   setupFilters() {
