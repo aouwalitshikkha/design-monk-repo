@@ -24,6 +24,18 @@
       ],
       "blockers": "wait for the log files . Sajib bhai provides competitors link",
       "notes": "Note From Sajib Bhai UX Studio        https://www.uxstudioteam.com/"
+    },
+    {
+      "id": "2026-05-05",
+      "date": "2026-05-05",
+      "hours": 2,
+      "category": "Research",
+      "tasks": [
+        "Check Competitors specially musemind what they have done",
+        "Visit Sites of others competitors just browse randomly"
+      ],
+      "blockers": "None",
+      "notes": "Taposh Dada did some thing more technical i think."
     }
   ]
 }
