@@ -100,21 +100,23 @@
         </div>
 
         <!-- Tasks -->
-        <div class="bg-white rounded-xl shadow">
-          <div class="p-4 border-b flex items-center justify-between">
+        <div class="bg-white rounded-xl shadow flex flex-col">
+          <div class="p-4 border-b flex items-center justify-between flex-shrink-0">
             <h2 class="text-lg font-bold">Tasks</h2>
             <span id="task-count" class="text-sm text-gray-500">0 pending, 0 completed</span>
           </div>
-          <div id="tasks-pending" class="divide-y">
-            <div class="p-4">
-              <h3 class="text-sm font-semibold text-gray-500 mb-2">Pending</h3>
-              <div id="pending-tasks-list" class="space-y-2"></div>
+          <div class="overflow-y-auto max-h-96">
+            <div id="tasks-pending" class="divide-y">
+              <div class="p-4">
+                <h3 class="text-sm font-semibold text-gray-500 mb-2">Pending</h3>
+                <div id="pending-tasks-list" class="space-y-2"></div>
+              </div>
             </div>
-          </div>
-          <div id="tasks-completed" class="divide-y border-t">
-            <div class="p-4">
-              <h3 class="text-sm font-semibold text-gray-500 mb-2">Completed</h3>
-              <div id="completed-tasks-list" class="space-y-2"></div>
+            <div id="tasks-completed" class="divide-y border-t">
+              <div class="p-4">
+                <h3 class="text-sm font-semibold text-gray-500 mb-2">Completed</h3>
+                <div id="completed-tasks-list" class="space-y-2"></div>
+              </div>
             </div>
           </div>
         </div>
