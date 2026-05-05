@@ -11,6 +11,19 @@
       ],
       "blockers": "Sajib Bhai was in Rajshahi. So I have to stop",
       "notes": "This was my first day"
+    },
+    {
+      "id": "2026-05-04",
+      "date": "2026-05-04",
+      "hours": 2.0833333333333335,
+      "category": "Meeting",
+      "tasks": [
+        "Ask Sajib Bhai About What problem he faces",
+        "Share some of my views",
+        "Ask Sajib bhai for competitors and log file"
+      ],
+      "blockers": "wait for the log files . Sajib bhai provides competitors link",
+      "notes": "Note From Sajib Bhai UX Studio        https://www.uxstudioteam.com/"
     }
   ]
 }
