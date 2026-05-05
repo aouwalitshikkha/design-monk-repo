@@ -94,7 +94,175 @@ function showCategories() {
   });
 }
 
+function readData() {
+  if (fs.existsSync(DATA_FILE)) {
+    try {
+      return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+    } catch (e) {
+      console.log('Warning: Could not read existing file.');
+    }
+  }
+  return { entries: [] };
+}
+
+function saveData(data) {
+  data.entries.sort((a, b) => a.date.localeCompare(b.date));
+  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+}
+
+function gitPush(date) {
+  try {
+    const hasChanges = execSync('git status --porcelain', { encoding: 'utf8', cwd: __dirname }).trim();
+    if (hasChanges) {
+      execSync('git add work-log.json attachments/', { stdio: 'inherit', cwd: __dirname });
+      execSync(`git commit -m "Update work log: ${date}"`, { stdio: 'inherit', cwd: __dirname });
+      execSync('git push', { stdio: 'inherit', cwd: __dirname });
+      console.log('Pushed to GitHub successfully!');
+    } else {
+      console.log('No changes to push.');
+    }
+  } catch (e) {
+    console.log('\nNote: Git push failed or not a git repo yet.');
+  }
+}
+
+function displayEntry(entry) {
+  console.log(`\n  Date:       ${entry.date}`);
+  console.log(`  Hours:      ${entry.hours.toFixed(2)}`);
+  console.log(`  Category:   ${entry.category}`);
+  console.log(`  Tasks:      ${entry.tasks.map((t, i) => `${i + 1}. ${t}`).join('\n              ')}`);
+  console.log(`  Blockers:   ${entry.blockers || 'None'}`);
+  console.log(`  Notes:      ${entry.notes || ''}`);
+  if (entry.attachments && entry.attachments.length) {
+    console.log(`  Attachments: ${entry.attachments.join(', ')}`);
+  }
+}
+
+async function editEntry() {
+  console.log('=== Design Monk Work Log - Edit Mode ===\n');
+
+  const data = readData();
+  if (!data.entries.length) {
+    console.log('No entries found.');
+    rl.close();
+    return;
+  }
+
+  console.log('Existing entries:');
+  data.entries.forEach((e, i) => {
+    const preview = e.tasks[0] ? e.tasks[0].substring(0, 55) : '';
+    console.log(`  ${i + 1}. ${e.date}  ${e.category.padEnd(14)} ${String(e.hours.toFixed(2)).padStart(6)}h  ${preview}`);
+  });
+
+  const sel = await askNumber('\nSelect entry to edit (number): ');
+  const idx = sel - 1;
+  if (idx < 0 || idx >= data.entries.length) {
+    console.log('Invalid selection.');
+    rl.close();
+    return;
+  }
+
+  const entry = data.entries[idx];
+  console.log(`\n--- Current Entry for ${entry.date} ---`);
+  displayEntry(entry);
+
+  // Date
+  const newDate = await ask(`Date [${entry.date}]: `) || entry.date;
+
+  // Hours
+  const hrsRaw = await ask(`Hours worked [${entry.hours.toFixed(2)}]: `);
+  const newHours = hrsRaw.trim() ? parseHours(hrsRaw) : entry.hours;
+
+  // Category
+  showCategories();
+  const catRaw = await ask(`Category [${entry.category}]: `);
+  let newCategory = entry.category;
+  if (catRaw.trim()) {
+    const catNum = parseInt(catRaw.trim(), 10);
+    if (!isNaN(catNum) && catNum >= 1 && catNum <= CATEGORIES.length) {
+      newCategory = CATEGORIES[catNum - 1];
+    } else {
+      newCategory = catRaw.trim();
+    }
+  }
+
+  // Tasks
+  console.log('\nCurrent tasks:');
+  entry.tasks.forEach((t, i) => console.log(`  ${i + 1}. ${t}`));
+  const keepTasks = await ask('Keep current tasks? (Y/n): ');
+  let newTasks;
+  if (keepTasks.toLowerCase() === 'n') {
+    console.log('Enter new tasks (empty to finish):');
+    newTasks = [];
+    while (true) {
+      const t = await ask(`  Task ${newTasks.length + 1}: `);
+      if (!t) break;
+      newTasks.push(t);
+    }
+  } else {
+    newTasks = [...entry.tasks];
+  }
+
+  // Blockers
+  const newBlockers = await ask(`Blockers [${entry.blockers || 'None'}]: `) || entry.blockers || 'None';
+
+  // Notes
+  const newNotes = await ask(`Notes [${entry.notes || ''}]: `) || entry.notes || '';
+
+  // Attachments
+  const attachDir = path.join(__dirname, 'attachments');
+  if (!fs.existsSync(attachDir)) {
+    fs.mkdirSync(attachDir, { recursive: true });
+  }
+  const existingAttachments = entry.attachments || [];
+  if (existingAttachments.length) {
+    console.log('\nCurrent attachments:');
+    existingAttachments.forEach(a => console.log(`  - ${a}`));
+  }
+  console.log('\nAdd new attachments (press Enter to skip):');
+  const newAttachments = [...existingAttachments];
+  while (true) {
+    const fp = await ask(`  File ${newAttachments.length + 1}: `);
+    if (!fp) break;
+    const resolved = path.resolve(fp.trim());
+    if (!fs.existsSync(resolved)) {
+      console.log(`  Warning: File not found — "${resolved}"`);
+      continue;
+    }
+    const ext = path.extname(resolved);
+    const base = path.basename(resolved, ext);
+    const destName = `${newDate}_${base}${ext}`;
+    fs.copyFileSync(resolved, path.join(attachDir, destName));
+    newAttachments.push(`attachments/${destName}`);
+    console.log(`  Copied to attachments/${destName}`);
+  }
+
+  // Build updated entry
+  const updated = {
+    id: newDate,
+    date: newDate,
+    hours: newHours,
+    category: newCategory,
+    tasks: newTasks,
+    blockers: newBlockers || 'None',
+    notes: newNotes || '',
+    attachments: newAttachments.length ? newAttachments : undefined
+  };
+
+  data.entries.splice(idx, 1);
+  data.entries.push(updated);
+  saveData(data);
+  console.log(`\nEntry for ${newDate} saved.`);
+  gitPush(newDate);
+  rl.close();
+}
+
 async function main() {
+  if (process.argv.includes('--edit')) {
+    await editEntry();
+    return;
+  }
+
   console.log('=== Design Monk Work Log ===\n');
 
   // Date
@@ -182,29 +350,9 @@ async function main() {
     console.log(`Entry for ${date} added.`);
   }
 
-  // Sort by date
-  data.entries.sort((a, b) => a.date.localeCompare(b.date));
-
-  // Save file
-  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+  saveData(data);
   console.log('Saved to work-log.json');
-
-  // Git operations
-  try {
-    const hasChanges = execSync('git status --porcelain', { encoding: 'utf8', cwd: __dirname }).trim();
-    if (hasChanges) {
-      execSync('git add work-log.json attachments/', { stdio: 'inherit', cwd: __dirname });
-      execSync(`git commit -m "Update work log: ${date}"`, { stdio: 'inherit', cwd: __dirname });
-      execSync('git push', { stdio: 'inherit', cwd: __dirname });
-      console.log('\nPushed to GitHub successfully!');
-    } else {
-      console.log('\nNo changes to push.');
-    }
-  } catch (e) {
-    console.log('\nNote: Git push failed or not a git repo yet.');
-    console.log('Make sure you have initialized git and added remote.');
-  }
-
+  gitPush(date);
   rl.close();
 }
 
