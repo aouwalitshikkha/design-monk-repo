@@ -7,6 +7,7 @@ const REPO_OWNER = 'aouwalitshikkha';
 const REPO_NAME = 'design-monk-repo';
 const BRANCH = 'main';
 const DATA_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/work-log.json`;
+const ATTACHMENT_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/attachments`;
 
 function fmtHours(n) {
   return (n || 0).toFixed(2);
@@ -17,6 +18,9 @@ class WorkLogApp {
     this.entries = [];
     this.filteredEntries = [];
     this.charts = {};
+    this.calendarMonth = new Date().getMonth();
+    this.calendarYear = new Date().getFullYear();
+    this.selectedDate = null;
     this.init();
   }
 
@@ -99,6 +103,7 @@ class WorkLogApp {
     this.renderStats();
     this.renderEntries();
     this.renderCharts();
+    this.renderCalendar();
   }
 
   renderStats() {
@@ -122,9 +127,10 @@ class WorkLogApp {
       return;
     }
 
-    container.innerHTML = this.filteredEntries
-      .sort((a, b) => b.date.localeCompare(a.date))
-      .map(entry => `
+    const sorted = [...this.filteredEntries].sort((a, b) => b.date.localeCompare(a.date));
+    const limited = sorted.slice(0, 10);
+
+    container.innerHTML = limited.map(entry => `
         <div class="p-4 hover:bg-gray-50 transition-colors">
           <div class="flex items-start justify-between">
             <div class="flex-1">
@@ -138,6 +144,7 @@ class WorkLogApp {
               </ul>
               ${entry.blockers && entry.blockers !== 'None' ? `<div class="text-sm text-orange-600 mb-1"><strong>Blockers:</strong> ${entry.blockers}</div>` : ''}
               ${entry.notes ? `<div class="text-sm text-gray-500 italic">${entry.notes}</div>` : ''}
+              ${entry.attachments && entry.attachments.length ? `<div class="mt-2 flex gap-2 flex-wrap">${entry.attachments.map(a => `<a href="${ATTACHMENT_URL}/${a.split('/').pop()}" target="_blank" class="text-xs bg-gray-100 hover:bg-blue-50 text-blue-700 px-2 py-1 rounded border">${a.split('/').pop()}</a>`).join('')}</div>` : ''}
             </div>
           </div>
         </div>
@@ -317,6 +324,73 @@ class WorkLogApp {
     };
 
     html2pdf().set(opt).from(element).save();
+  }
+
+  renderCalendar() {
+    const grid = document.getElementById('calendar-grid');
+    const label = document.getElementById('calendar-label');
+    if (!grid) return;
+
+    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    label.textContent = `${monthNames[this.calendarMonth]} ${this.calendarYear}`;
+
+    const entryDates = new Set(this.entries.map(e => e.date));
+
+    const firstDay = new Date(this.calendarYear, this.calendarMonth, 1).getDay();
+    const daysInMonth = new Date(this.calendarYear, this.calendarMonth + 1, 0).getDate();
+
+    const dayHeaders = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d =>
+      `<div class="text-xs font-semibold text-gray-500 py-1">${d}</div>`
+    ).join('');
+
+    let daysHtml = '';
+    for (let i = 0; i < firstDay; i++) {
+      daysHtml += '<div></div>';
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${this.calendarYear}-${String(this.calendarMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+      const hasEntry = entryDates.has(dateStr);
+      const isSelected = this.selectedDate === dateStr;
+      const today = new Date();
+      const isToday = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}` === dateStr;
+
+      let cls = 'rounded py-1 cursor-pointer transition-colors text-xs relative';
+      if (isSelected) cls += ' bg-orange-400 text-white font-bold';
+      else if (hasEntry) cls += ' bg-blue-100 hover:bg-blue-200';
+      else cls += ' hover:bg-gray-100';
+      if (isToday && !isSelected) cls += ' ring-1 ring-inset ring-gray-400';
+
+      const dot = hasEntry ? '<span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-500"></span>' : '';
+
+      daysHtml += `<div class="${cls}" onclick="app.onDateClick('${dateStr}')">${d}${dot}</div>`;
+    }
+
+    grid.innerHTML = dayHeaders + daysHtml;
+  }
+
+  navigateCalendar(direction) {
+    this.calendarMonth += direction;
+    if (this.calendarMonth < 0) { this.calendarMonth = 11; this.calendarYear--; }
+    if (this.calendarMonth > 11) { this.calendarMonth = 0; this.calendarYear++; }
+    this.renderCalendar();
+  }
+
+  onDateClick(dateStr) {
+    if (this.selectedDate === dateStr) {
+      this.selectedDate = null;
+      document.getElementById('filter-from').value = '';
+      document.getElementById('filter-to').value = '';
+      this.filteredEntries = [...this.entries];
+    } else {
+      this.selectedDate = dateStr;
+      document.getElementById('filter-from').value = dateStr;
+      document.getElementById('filter-to').value = dateStr;
+      this.filteredEntries = this.entries.filter(e => e.date === dateStr);
+    }
+    this.renderStats();
+    this.renderEntries();
+    this.renderCharts();
+    this.renderCalendar();
   }
 }
 

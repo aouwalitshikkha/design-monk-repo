@@ -17,6 +17,13 @@ body {
   border: 1px solid #d1d5db;
 }
 
+#calendar-grid > div {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media print {
   header, .bg-white.rounded-xl.shadow.mb-6.p-4 {
     display: none;

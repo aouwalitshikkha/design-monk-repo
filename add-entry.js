@@ -119,6 +119,30 @@ async function main() {
   // Notes
   const notes = await ask('Additional notes: ');
 
+  // Attachments
+  const attachments = [];
+  const attachDir = path.join(__dirname, 'attachments');
+  if (!fs.existsSync(attachDir)) {
+    fs.mkdirSync(attachDir, { recursive: true });
+  }
+  console.log('\nAttach note files one by one (press Enter with empty path to finish):');
+  while (true) {
+    const filePath = await ask(`  File ${attachments.length + 1}: `);
+    if (!filePath) break;
+    const resolved = path.resolve(filePath.trim());
+    if (!fs.existsSync(resolved)) {
+      console.log(`  Warning: File not found — "${resolved}"`);
+      continue;
+    }
+    const ext = path.extname(resolved);
+    const base = path.basename(resolved, ext);
+    const destName = `${date}_${base}${ext}`;
+    const destPath = path.join(attachDir, destName);
+    fs.copyFileSync(resolved, destPath);
+    attachments.push(`attachments/${destName}`);
+    console.log(`  Copied to attachments/${destName}`);
+  }
+
   // Build entry
   const entry = {
     id: date,
@@ -127,7 +151,8 @@ async function main() {
     category,
     tasks,
     blockers: blockers || 'None',
-    notes: notes || ''
+    notes: notes || '',
+    attachments: attachments.length ? attachments : undefined
   };
 
   // Read existing data
@@ -168,7 +193,7 @@ async function main() {
   try {
     const hasChanges = execSync('git status --porcelain', { encoding: 'utf8', cwd: __dirname }).trim();
     if (hasChanges) {
-      execSync('git add work-log.json', { stdio: 'inherit', cwd: __dirname });
+      execSync('git add work-log.json attachments/', { stdio: 'inherit', cwd: __dirname });
       execSync(`git commit -m "Update work log: ${date}"`, { stdio: 'inherit', cwd: __dirname });
       execSync('git push', { stdio: 'inherit', cwd: __dirname });
       console.log('\nPushed to GitHub successfully!');
