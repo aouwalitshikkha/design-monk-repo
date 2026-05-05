@@ -38,6 +38,44 @@ function askNumber(question) {
   });
 }
 
+function parseHours(input) {
+  input = input.trim().toLowerCase().replace(/\s/g, '');
+
+  // "1h30m" or "1h30min" -> 1.5
+  const hmMatch = input.match(/^(\d+(?:\.\d+)?)h(?:(\d+)m?(?:in)?)?$/);
+  if (hmMatch) {
+    const h = parseFloat(hmMatch[1]);
+    const m = hmMatch[2] ? parseInt(hmMatch[2], 10) : 0;
+    return h + m / 60;
+  }
+
+  // "30m" or "30min" -> 0.5
+  const minMatch = input.match(/^(\d+)m(?:in)?$/);
+  if (minMatch) {
+    return parseInt(minMatch[1], 10) / 60;
+  }
+
+  // "1:30" -> 1.5
+  const timeMatch = input.match(/^(\d+):(\d+)$/);
+  if (timeMatch) {
+    return parseInt(timeMatch[1], 10) + parseInt(timeMatch[2], 10) / 60;
+  }
+
+  // "1.5" or ".5" or "1" -> decimal hours
+  const num = parseFloat(input);
+  if (!isNaN(num)) return num;
+
+  return 0;
+}
+
+function askHours(question) {
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      resolve(parseHours(answer));
+    });
+  });
+}
+
 async function collectTasks() {
   const tasks = [];
   console.log('\nEnter tasks one by one (press Enter with empty task to finish):');
@@ -65,7 +103,7 @@ async function main() {
   const date = dateInput || today;
 
   // Hours
-  const hours = await askNumber('Hours worked: ');
+  const hours = await askHours('Hours worked (e.g., 1.5, 30m, 1h30m, 1:30): ');
 
   // Category
   showCategories();
