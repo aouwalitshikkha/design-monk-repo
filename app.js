@@ -7,6 +7,7 @@ const REPO_OWNER = 'aouwalitshikkha';
 const REPO_NAME = 'design-monk-repo';
 const BRANCH = 'main';
 const DATA_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/work-log.json`;
+const TASKS_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/tasks.json`;
 const ATTACHMENT_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/attachments`;
 
 function fmtHours(n) {
@@ -17,6 +18,7 @@ class WorkLogApp {
   constructor() {
     this.entries = [];
     this.filteredEntries = [];
+    this.tasks = [];
     this.charts = {};
     this.calendarMonth = new Date().getMonth();
     this.calendarYear = new Date().getFullYear();
@@ -26,6 +28,7 @@ class WorkLogApp {
 
   async init() {
     await this.loadData();
+    await this.loadTasks();
     this.setupFilters();
     this.render();
   }
@@ -48,10 +51,22 @@ class WorkLogApp {
     }
   }
 
+  async loadTasks() {
+    try {
+      const response = await fetch(TASKS_URL + '?_=' + Date.now(), { cache: 'no-store' });
+      if (!response.ok) throw new Error('Failed to load tasks');
+      const data = await response.json();
+      this.tasks = data.tasks || [];
+    } catch (e) {
+      console.error('Error loading tasks:', e);
+    }
+  }
+
   async refreshData() {
     const btn = document.getElementById('reload-btn');
     if (btn) btn.textContent = 'Loading...';
     await this.loadData();
+    await this.loadTasks();
     this.setupFilters();
     this.render();
     if (btn) btn.textContent = 'Reload';
@@ -102,6 +117,7 @@ class WorkLogApp {
   render() {
     this.renderStats();
     this.renderEntries();
+    this.renderTasks();
     this.renderCharts();
     this.renderCalendar();
   }
@@ -149,6 +165,39 @@ class WorkLogApp {
           </div>
         </div>
       `).join('');
+  }
+
+  renderTasks() {
+    const pending = this.tasks.filter(t => t.status === 'pending');
+    const completed = this.tasks.filter(t => t.status === 'completed');
+
+    document.getElementById('task-count').textContent = `${pending.length} pending, ${completed.length} completed`;
+
+    const pendingList = document.getElementById('pending-tasks-list');
+    if (!pending.length) {
+      pendingList.innerHTML = '<div class="text-sm text-gray-400">No pending tasks</div>';
+    } else {
+      pendingList.innerHTML = pending.map(t => `
+        <div class="flex items-center gap-2 text-sm bg-yellow-50 border border-yellow-200 rounded px-3 py-2">
+          <span class="w-2 h-2 rounded-full bg-yellow-500 flex-shrink-0"></span>
+          <span class="flex-1">${t.title}</span>
+          <span class="text-xs text-gray-400">assigned: ${t.assignedDate}</span>
+        </div>
+      `).join('');
+    }
+
+    const completedList = document.getElementById('completed-tasks-list');
+    if (!completed.length) {
+      completedList.innerHTML = '<div class="text-sm text-gray-400">No completed tasks</div>';
+    } else {
+      completedList.innerHTML = completed.map(t => `
+        <div class="flex items-center gap-2 text-sm bg-green-50 border border-green-200 rounded px-3 py-2">
+          <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+          <span class="flex-1">${t.title}</span>
+          <span class="text-xs text-gray-400">${t.assignedDate} &rarr; ${t.completedDate}</span>
+        </div>
+      `).join('');
+    }
   }
 
   renderCharts() {

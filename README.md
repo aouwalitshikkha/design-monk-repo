@@ -33,7 +33,21 @@ npm run edit
 
 Shows a numbered list of all entries. Select one by number, then edit any field — press Enter to keep the current value. You can also add attachments to old entries.
 
-### 3. View Dashboard
+### 3. Manage Tasks
+
+```bash
+node add-entry.js --tasks
+# or
+npm run task
+```
+
+Interactive task manager:
+- Lists all tasks (pending and completed) with assigned and completion dates
+- **(A)dd task** — enter a title and assigned date
+- **(C)omplete #** — mark a task as done with a completion date
+- Auto-commits and pushes to GitHub.
+
+### 4. View Dashboard
 
 Visit: [https://aouwalitshikkha.github.io/design-monk-repo/](https://aouwalitshikkha.github.io/design-monk-repo/)
 
@@ -45,8 +59,9 @@ Features:
 - **Export** — Excel (.xlsx) or PDF
 - **Charts** — category breakdown (doughnut) and hours over time (bar)
 - **Entries list** — shows last 10 entries
+- **Tasks** — pending tasks (yellow) and completed tasks (green) with assigned → done dates
 
-### 4. Categories
+### 5. Categories
 
 - **Research** — Market research, tech exploration
 - **Suggestion** — Client recommendations, proposals
@@ -68,9 +83,10 @@ Features:
 
 ## Files
 
-- `add-entry.js` — CLI script to add & edit entries
+- `add-entry.js` — CLI script to add, edit entries & manage tasks
 - `work-log.json` — All your work data
+- `tasks.json` — All your task data (pending & completed)
 - `index.html` — Dashboard (GitHub Pages)
-- `app.js` — Dashboard logic (calendar, charts, filters, reports)
+- `app.js` — Dashboard logic (calendar, charts, filters, reports, tasks)
 - `styles.css` — Dashboard styles
 - `attachments/` — Folder for attached note files

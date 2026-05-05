@@ -9,6 +9,7 @@ const rl = readline.createInterface({
 });
 
 const DATA_FILE = path.join(__dirname, 'work-log.json');
+const TASKS_FILE = path.join(__dirname, 'tasks.json');
 
 const CATEGORIES = [
   'Research',
@@ -257,9 +258,137 @@ async function editEntry() {
   rl.close();
 }
 
+function readTasks() {
+  if (fs.existsSync(TASKS_FILE)) {
+    try {
+      return JSON.parse(fs.readFileSync(TASKS_FILE, 'utf8'));
+    } catch (e) {
+      console.log('Warning: Could not read tasks.json.');
+    }
+  }
+  return { tasks: [] };
+}
+
+function saveTasks(data) {
+  fs.writeFileSync(TASKS_FILE, JSON.stringify(data, null, 2));
+}
+
+function gitPushTasks(msg) {
+  try {
+    const hasChanges = execSync('git status --porcelain', { encoding: 'utf8', cwd: __dirname }).trim();
+    if (hasChanges) {
+      execSync('git add tasks.json', { stdio: 'inherit', cwd: __dirname });
+      execSync(`git commit -m "${msg}"`, { stdio: 'inherit', cwd: __dirname });
+      execSync('git push', { stdio: 'inherit', cwd: __dirname });
+      console.log('Pushed to GitHub successfully!');
+    }
+  } catch (e) {
+    console.log('\nNote: Git push failed or not a git repo yet.');
+  }
+}
+
+async function manageTasks() {
+  console.log('=== Design Monk Task Manager ===\n');
+
+  while (true) {
+    const data = readTasks();
+    const pending = data.tasks.filter(t => t.status === 'pending');
+    const completed = data.tasks.filter(t => t.status === 'completed');
+
+    console.log('Pending:');
+    if (!pending.length) {
+      console.log('  (none)\n');
+    } else {
+      pending.forEach((t, i) => {
+        const idx = data.tasks.indexOf(t) + 1;
+        console.log(`  ${idx}. ${t.title}  (assigned: ${t.assignedDate})`);
+      });
+      console.log();
+    }
+
+    console.log('Completed:');
+    if (!completed.length) {
+      console.log('  (none)\n');
+    } else {
+      completed.forEach((t, i) => {
+        const idx = data.tasks.indexOf(t) + 1;
+        console.log(`  ${idx}. ${t.title}  (assigned: ${t.assignedDate}, done: ${t.completedDate})`);
+      });
+      console.log();
+    }
+
+    const cmd = await ask('(A)dd task, (C)omplete #, (q)uit: ');
+    const lower = cmd.toLowerCase().trim();
+
+    if (lower === 'q' || lower === 'quit') {
+      break;
+    }
+
+    if (lower === 'a' || lower === 'add') {
+      const title = await ask('Task title: ');
+      if (!title) { console.log('Cancelled.\n'); continue; }
+      const today = new Date().toISOString().split('T')[0];
+      const date = await ask(`Assigned date [${today}]: `) || today;
+      const nextId = data.tasks.length ? Math.max(...data.tasks.map(t => parseInt(t.id, 10))) + 1 : 1;
+      data.tasks.push({
+        id: String(nextId),
+        title,
+        assignedDate: date,
+        completedDate: null,
+        status: 'pending'
+      });
+      saveTasks(data);
+      console.log(`Task added: "${title}"\n`);
+      gitPushTasks(`Add task: ${title}`);
+      continue;
+    }
+
+    if (lower.startsWith('c')) {
+      const parts = lower.split(/\s+/);
+      let num;
+      if (parts.length > 1) {
+        num = parseInt(parts[1], 10);
+      } else {
+        const raw = await ask('Task number to complete: ');
+        num = parseInt(raw.trim(), 10);
+      }
+
+      if (isNaN(num) || num < 1 || num > data.tasks.length) {
+        console.log('Invalid number.\n');
+        continue;
+      }
+
+      const task = data.tasks[num - 1];
+      if (task.status === 'completed') {
+        console.log(`Task "${task.title}" is already completed.\n`);
+        continue;
+      }
+
+      const today = new Date().toISOString().split('T')[0];
+      const doneDate = await ask(`Completed date [${today}]: `) || today;
+      task.completedDate = doneDate;
+      task.status = 'completed';
+      saveTasks(data);
+      console.log(`Task completed: "${task.title}"\n`);
+      gitPushTasks(`Complete task: ${task.title}`);
+      continue;
+    }
+
+    console.log('Unknown command.\n');
+  }
+
+  console.log('Goodbye!');
+  rl.close();
+}
+
 async function main() {
   if (process.argv.includes('--edit')) {
     await editEntry();
+    return;
+  }
+
+  if (process.argv.includes('--tasks')) {
+    await manageTasks();
     return;
   }
 

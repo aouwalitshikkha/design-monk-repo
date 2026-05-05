@@ -6,6 +6,7 @@
   "scripts": {
     "log": "node add-entry.js",
     "edit": "node add-entry.js --edit",
+    "task": "node add-entry.js --tasks",
     "report": "node report-cli.js"
   },
   "keywords": ["work-log", "tracker", "consultant"],
