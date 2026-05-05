@@ -406,11 +406,16 @@ class WorkLogApp {
       margin: 0.5,
       filename: `design-monk-report-${new Date().toISOString().split('T')[0]}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
+      html2canvas: { scale: 2, useCORS: true, logging: false },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
 
-    html2pdf().set(opt).from(element).save();
+    try {
+      html2pdf().set(opt).from(element).save();
+    } catch (e) {
+      console.error('PDF export failed:', e);
+      alert('PDF export failed. Check the console for details.');
+    }
   }
 
   renderCalendar() {
