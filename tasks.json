@@ -1,3 +1,11 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Meeting with Sajib Bhai at 2026-05-07",
+      "assignedDate": "2026-05-07",
+      "completedDate": null,
+      "status": "pending"
+    }
+  ]
 }
