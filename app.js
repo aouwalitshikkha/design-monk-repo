@@ -8,6 +8,10 @@ const REPO_NAME = 'design-monk-repo';
 const BRANCH = 'main';
 const DATA_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/work-log.json`;
 
+function fmtHours(n) {
+  return (n || 0).toFixed(2);
+}
+
 class WorkLogApp {
   constructor() {
     this.entries = [];
@@ -91,13 +95,13 @@ class WorkLogApp {
   renderStats() {
     const totalHours = this.filteredEntries.reduce((sum, e) => sum + (e.hours || 0), 0);
     const categories = new Set(this.filteredEntries.map(e => e.category)).size;
-    const avg = this.filteredEntries.length ? (totalHours / this.filteredEntries.length).toFixed(1) : 0;
+    const avg = this.filteredEntries.length ? (totalHours / this.filteredEntries.length) : 0;
 
     document.getElementById('stat-entries').textContent = this.filteredEntries.length;
-    document.getElementById('stat-hours').textContent = totalHours.toFixed(1);
+    document.getElementById('stat-hours').textContent = fmtHours(totalHours);
     document.getElementById('stat-categories').textContent = categories;
-    document.getElementById('stat-avg').textContent = avg;
-    document.getElementById('total-hours').textContent = totalHours.toFixed(1);
+    document.getElementById('stat-avg').textContent = fmtHours(avg);
+    document.getElementById('total-hours').textContent = fmtHours(totalHours);
   }
 
   renderEntries() {
@@ -118,7 +122,7 @@ class WorkLogApp {
               <div class="flex items-center gap-3 mb-2">
                 <span class="font-bold text-lg">${entry.date}</span>
                 <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">${entry.category}</span>
-                <span class="text-sm text-gray-500">${entry.hours}h</span>
+                <span class="text-sm text-gray-500">${fmtHours(entry.hours)}h</span>
               </div>
               <ul class="list-disc list-inside text-sm text-gray-700 mb-2 space-y-0.5">
                 ${entry.tasks.map(t => `<li>${t}</li>`).join('')}
@@ -219,7 +223,7 @@ class WorkLogApp {
 
     const catRows = Object.entries(catBreakdown)
       .sort((a, b) => b[1] - a[1])
-      .map(([cat, hrs]) => `<tr><td class="border px-3 py-1">${cat}</td><td class="border px-3 py-1 text-right">${hrs.toFixed(1)}h</td></tr>`)
+      .map(([cat, hrs]) => `<tr><td class="border px-3 py-1">${cat}</td><td class="border px-3 py-1 text-right">${fmtHours(hrs)}h</td></tr>`)
       .join('');
 
     // Day-by-day
@@ -229,7 +233,7 @@ class WorkLogApp {
         <tr>
           <td class="border px-3 py-1">${e.date}</td>
           <td class="border px-3 py-1">${e.category}</td>
-          <td class="border px-3 py-1 text-right">${e.hours}h</td>
+          <td class="border px-3 py-1 text-right">${fmtHours(e.hours)}h</td>
           <td class="border px-3 py-1">${e.tasks.join(', ')}</td>
         </tr>
       `).join('');
@@ -240,7 +244,7 @@ class WorkLogApp {
         <div class="grid grid-cols-2 gap-4 mb-4">
           <div class="bg-white p-3 rounded shadow">
             <div class="text-sm text-gray-500">Total Hours</div>
-            <div class="text-2xl font-bold">${totalHours.toFixed(1)}</div>
+            <div class="text-2xl font-bold">${fmtHours(totalHours)}</div>
           </div>
           <div class="bg-white p-3 rounded shadow">
             <div class="text-sm text-gray-500">Total Entries</div>
