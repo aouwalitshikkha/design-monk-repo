@@ -476,6 +476,7 @@ class WorkLogApp {
     }
     this.renderStats();
     this.renderEntries();
+    this.renderAttachments();
     this.renderCharts();
     this.renderCalendar();
   }
