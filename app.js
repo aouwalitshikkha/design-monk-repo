@@ -117,6 +117,7 @@ class WorkLogApp {
   render() {
     this.renderStats();
     this.renderEntries();
+    this.renderAttachments();
     this.renderTasks();
     this.renderCharts();
     this.renderCalendar();
@@ -163,6 +164,43 @@ class WorkLogApp {
               ${entry.attachments && entry.attachments.length ? `<div class="mt-2 flex gap-2 flex-wrap">${entry.attachments.map(a => `<a href="${ATTACHMENT_URL}/${a.split('/').pop()}" target="_blank" rel="noopener" class="text-xs bg-gray-100 text-blue-600 px-2 py-1 rounded border hover:bg-blue-50 hover:text-blue-700 transition-colors">${a.split('/').pop()}</a>`).join('')}</div>` : ''}
             </div>
           </div>
+        </div>
+      `).join('');
+  }
+
+  renderAttachments() {
+    const container = document.getElementById('attachments-list');
+    const countEl = document.getElementById('attachment-count');
+    if (!container) return;
+
+    const map = new Map();
+    this.filteredEntries.forEach(entry => {
+      if (entry.attachments && entry.attachments.length) {
+        entry.attachments.forEach(a => {
+          const filename = a.split('/').pop();
+          const existing = map.get(filename);
+          if (!existing || entry.date > existing.date) {
+            map.set(filename, { date: entry.date, url: `${ATTACHMENT_URL}/${filename}` });
+          }
+        });
+      }
+    });
+
+    const attachments = Array.from(map.entries())
+      .map(([filename, { date, url }]) => ({ filename, date, url }))
+      .sort((a, b) => b.date.localeCompare(a.date) || a.filename.localeCompare(b.filename));
+
+    if (countEl) countEl.textContent = `${attachments.length} attachment${attachments.length !== 1 ? 's' : ''}`;
+
+    if (!attachments.length) {
+      container.innerHTML = '<div class="p-8 text-center text-gray-400">No attachments</div>';
+      return;
+    }
+
+    container.innerHTML = attachments.map(a => `
+        <div class="p-3 flex items-center justify-between text-sm hover:bg-gray-50 transition-colors">
+          <a href="${a.url}" target="_blank" rel="noopener" class="text-blue-600 hover:underline">${a.filename}</a>
+          <span class="text-gray-400 text-xs">${a.date}</span>
         </div>
       `).join('');
   }

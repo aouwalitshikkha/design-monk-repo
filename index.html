@@ -152,15 +152,31 @@
         </div>
       </div>
 
-      <!-- Entries List -->
-      <div class="bg-white rounded-xl shadow mt-6">
-        <div class="p-4 border-b flex items-center justify-between">
-          <h2 class="text-lg font-bold">Work Entries</h2>
-          <span id="entry-count" class="text-sm text-gray-500">0 entries</span>
+      <!-- Work Area -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+
+        <!-- Entries -->
+        <div class="bg-white rounded-xl shadow">
+          <div class="p-4 border-b flex items-center justify-between">
+            <h2 class="text-lg font-bold">Work Entries</h2>
+            <span id="entry-count" class="text-sm text-gray-500">0 entries</span>
+          </div>
+          <div id="entries-list" class="divide-y">
+            <div class="p-8 text-center text-gray-400">Loading entries...</div>
+          </div>
         </div>
-        <div id="entries-list" class="divide-y">
-          <div class="p-8 text-center text-gray-400">Loading entries...</div>
+
+        <!-- Attachments -->
+        <div class="bg-white rounded-xl shadow">
+          <div class="p-4 border-b flex items-center justify-between">
+            <h2 class="text-lg font-bold">Attachments</h2>
+            <span id="attachment-count" class="text-sm text-gray-500">0</span>
+          </div>
+          <div id="attachments-list" class="divide-y">
+            <div class="p-8 text-center text-gray-400">No attachments</div>
+          </div>
         </div>
+
       </div>
     </main>
   </div>

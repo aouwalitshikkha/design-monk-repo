@@ -59,7 +59,8 @@ Features:
 - **Export** — Excel (.xlsx) or PDF
 - **Charts** — category breakdown (doughnut) and hours over time (bar)
 - **Entries list** — shows last 10 entries
-- **Tasks** — pending tasks (yellow) and completed tasks (green) with assigned → done dates
+- **Attachments** — dedicated column listing all attachments across entries (deduplicated, newest first) with clickable links
+- **Tasks** — pending tasks (yellow) and completed tasks (green) with assigned → done dates, scrolls when tall
 
 ### 5. Categories
 
