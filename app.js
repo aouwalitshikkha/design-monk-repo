@@ -160,7 +160,7 @@ class WorkLogApp {
               </ul>
               ${entry.blockers && entry.blockers !== 'None' ? `<div class="text-sm text-orange-600 mb-1"><strong>Blockers:</strong> ${entry.blockers}</div>` : ''}
               ${entry.notes ? `<div class="text-sm text-gray-500 italic">${entry.notes}</div>` : ''}
-              ${entry.attachments && entry.attachments.length ? `<div class="mt-2 flex gap-2 flex-wrap">${entry.attachments.map(a => `<span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded border">${a.split('/').pop()}</span>`).join('')}</div>` : ''}
+              ${entry.attachments && entry.attachments.length ? `<div class="mt-2 flex gap-2 flex-wrap">${entry.attachments.map(a => `<a href="${ATTACHMENT_URL}/${a.split('/').pop()}" target="_blank" rel="noopener" class="text-xs bg-gray-100 text-blue-600 px-2 py-1 rounded border hover:bg-blue-50 hover:text-blue-700 transition-colors">${a.split('/').pop()}</a>`).join('')}</div>` : ''}
             </div>
           </div>
         </div>
