@@ -1,3 +1,16 @@
 {
-  "entries": []
+  "entries": [
+    {
+      "id": "2026-05-01",
+      "date": "2026-05-01",
+      "hours": 0.5,
+      "category": "Research",
+      "tasks": [
+        "check the sites metas and ask Sajib Bhai to meeting. he was busy. so i can't do anything",
+        "Take some notes about technical seo"
+      ],
+      "blockers": "Sajib Bhai was in Rajshahi. So I have to stop",
+      "notes": "This was my first day"
+    }
+  ]
 }
