@@ -1,0 +1,13 @@
+{
+  "name": "design-monk-work-log",
+  "version": "1.0.0",
+  "description": "Personal work tracker for Design Monk consultancy",
+  "main": "add-entry.js",
+  "scripts": {
+    "log": "node add-entry.js",
+    "report": "node report-cli.js"
+  },
+  "keywords": ["work-log", "tracker", "consultant"],
+  "author": "",
+  "license": "MIT"
+}

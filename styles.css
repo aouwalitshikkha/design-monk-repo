@@ -1,0 +1,24 @@
+/* Custom styles for Design Monk Work Log */
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+#entries-list > div:last-child {
+  border-bottom: none;
+}
+
+#report-content table {
+  border-collapse: collapse;
+}
+
+#report-content th,
+#report-content td {
+  border: 1px solid #d1d5db;
+}
+
+@media print {
+  header, .bg-white.rounded-xl.shadow.mb-6.p-4 {
+    display: none;
+  }
+}
