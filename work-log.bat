@@ -60,7 +60,7 @@ exit
 :dashboard
 echo.
 echo Opening Dashboard in browser...
-start app\index.html
+start index.html
 exit
 
 :exit
