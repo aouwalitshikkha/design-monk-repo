@@ -173,6 +173,36 @@ Blog > [Article Title]
 - Alternatively, populate category pages with meaningful content or implement proper pagination
 - Remove blank category pages from XML sitemap
 
+### 17. Pagination Canonical Implementation
+
+**Finding:** Pagination canonical tags configured incorrectly. Same page returns multiple canonical URL variations.
+
+**Example:**
+```
+https://www.designmonks.co/projects?3ec313d8_page=5
+```
+
+**Deficiencies Identified:**
+- Pagination pages may reference incorrect canonical URLs
+- Self-referencing canonicals on page 2+ may point to main page instead of pagination variant
+- Missing canonical tags on subsequent pagination pages
+- Duplicate canonical URLs due to inconsistent query parameter handling
+- Session-based or random query parameters (e.g., `3ec313d8_page`) creating canonical conflicts
+
+**Recommendation:**
+- Implement self-referencing canonical: `<link rel="canonical" href="https://www.designmonks.co/projects?page=N">`
+- Each pagination page must reference its own canonical URL
+- Normalize query parameters: use consistent `page=N` format only
+- Remove session-based or random query parameters from canonical URLs
+- Use `rel="next"` and `rel="prev"` linking between pagination sequence:
+```html
+<link rel="prev" href="https://www.designmonks.co/projects?page=1">
+<link rel="next" href="https://www.designmonks.co/projects?page=3">
+```
+- Ensure canonical tags do not point to page 1 for all subsequent pages
+- Configure CMS or application to generate correct pagination canonicals dynamically
+- Implement canonical URL normalization to prevent parameter-based duplicates
+
 ---
 
 **Document Status:** Pending Review  
