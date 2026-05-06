@@ -465,10 +465,10 @@ async function main() {
   // Check if entry exists for this date
   const existingIndex = data.entries.findIndex(e => e.date === date);
   if (existingIndex !== -1) {
-    const overwrite = await ask(`Entry already exists for ${date}. Overwrite? (y/n): `);
-    if (overwrite.toLowerCase() === 'y') {
-      data.entries[existingIndex] = entry;
-      console.log(`Entry for ${date} updated.`);
+    const addAnother = await ask(`Entry already exists for ${date}. Add another? (y/n): `);
+    if (addAnother.toLowerCase() === 'y') {
+      data.entries.push(entry);
+      console.log(`New entry for ${date} added.`);
     } else {
       console.log('Cancelled.');
       rl.close();
