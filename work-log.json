@@ -39,6 +39,20 @@
       ],
       "blockers": "None",
       "notes": "Taposh Dada did some thing more technical i think."
+    },
+    {
+      "id": "2026-05-06",
+      "date": "2026-05-06",
+      "hours": 0.3333333333333333,
+      "category": "Research",
+      "tasks": [
+        "Note Takes from home page and about us and team members"
+      ],
+      "blockers": "None",
+      "notes": "",
+      "attachments": [
+        "attachments/2026-05-06_note-06-05"
+      ]
     }
   ]
 }
