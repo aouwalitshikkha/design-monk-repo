@@ -240,7 +240,7 @@ async function editEntry() {
 
   // Build updated entry
   const updated = {
-    id: newDate,
+    id: `${newDate}_${Date.now()}`,
     date: newDate,
     hours: newHours,
     category: newCategory,
@@ -442,7 +442,7 @@ async function main() {
 
   // Build entry
   const entry = {
-    id: date,
+    id: `${date}_${Date.now()}`,
     date,
     hours,
     category,
