@@ -1,6 +1,179 @@
-# Home page Video
+# Technical Audit: Designmonk Website
 
-Autoplaying a video when a page opens is generally not good for SEO, and can often harm your search rankings and user experience (UX). 
+## Executive Summary
 
-# Submission Form Functions 
-Be sure submission is working properly. how to manage those submission 
+This document presents technical observations and strategic recommendations for the Designmonk website, addressing SEO considerations, content strategy, and structural optimizations.
+
+---
+
+## Findings and Recommendations
+
+### 1. Video Autoplay
+
+**Finding:** Home page implements video autoplay on page load.
+
+**Recommendation:** Disable video autoplay. Autoplay functionality negatively impacts SEO performance and degrades user experience metrics.
+
+### 2. Submission Forms
+
+**Finding:** Submission form functionality requires verification.
+
+**Recommendation:** 
+- Conduct thorough testing of all submission endpoints
+- Document submission management procedures
+- Implement error handling and confirmation workflows
+
+### 3. Schema Markup
+
+**Finding:** No schema markup detected on homepage or About Us page.
+**Recommendation:** Implement appropriate structured data markup across all applicable pages.
+
+### 4. Image Optimization
+
+**Finding:** Image file naming lacks consistent convention.
+**Recommendation:** Establish and enforce standardized image naming convention (e.g., `[page]-[section]-[descriptor].[ext]`).
+
+### 5. Video Content
+
+**Reference:** https://www.youtube.com/watch?v=wh1wZeqCxd0&t=111s
+
+**Recommendation:** Evaluate referenced content for potential replication or inspiration for original video content.
+
+### 6. AI Claims Assessment
+
+**Finding:** Homepage contains implicit AI-related claims without substantiation.
+
+**Recommendation:** Clearly articulate:
+- Specific AI systems in use
+- Measurable outcomes derived from AI implementation
+- Proprietary methodologies employed
+
+### 7. Topical Authority
+
+**Finding:** Site attempts to establish authority across multiple domains simultaneously (AI, branding, UX, Webflow, Framer, SaaS, development, creative direction).
+
+**Recommendation:** Consolidate topical focus. Develop dedicated landing pages for each distinct service area:
+- "How We Use AI in UX Research"
+- "AI-Assisted Design Systems for SaaS"
+- "Framer vs. Webflow for SaaS Startups"
+- "UX Mistakes in AI Products"
+- "Designing Onboarding for AI Apps"
+- "Our UX Audit Framework"
+
+### 8. Content Strategy Alignment
+
+**Finding:** Current content optimization targets emotional response and visual engagement exclusively.
+
+**Recommendation:** Refactor content to accommodate retrieval systems and LLM extraction. Prioritize:
+- Verifiable claims with cited sources
+- Quantitative data and metrics
+- Structured answer formats
+- Semantic clarity for chunk extraction
+
+### 9. About Us Page
+
+**Recommendation:**
+- Implement Organization/Person schema markup
+- Include team member social profile links
+- Add Fahim Aziz social profile link
+- Restructure FAQ section with proper heading hierarchy
+
+### 10. Team Page
+
+**Recommendation:**
+- Embed social profile links
+- Coordinate LinkedIn profile updates designating Design Monk as current employer
+
+### 11. Sitemap Configuration
+
+**Finding:** XML sitemap exists but lacks `<lastmod>` timestamp elements.
+
+**Current Structure:**
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://www.designmonks.co</loc>
+    </url>
+</urlset>
+```
+
+**Recommendation:** 
+- Add `<lastmod>` element to each `<url>` entry reflecting the most recent modification date
+- Implement ISO 8601 date format (e.g., `2026-05-06`)
+- Configure automatic lastmod updates viaCMS or build process
+
+### 12. Robots Meta Directive
+
+**Finding:** No `<meta name="robots">` directive detected on pages.
+
+**Recommendation:** Implement robots meta tags on single article pages:
+```html
+<meta name="robots" content="index,follow">
+```
+
+### 13. Article Metadata
+
+**Finding:** Single article pages lack required Open Graph article meta tags.
+
+**Missing Elements:**
+```html
+<meta property="article:published_time" content="2026-05-05T10:55:15Z">
+<meta property="article:modified_time" content="2026-05-05T10:55:15Z">
+<meta property="article:author" content="Author Name">
+```
+
+**Recommendation:** 
+- Implement all article meta tags with accurate timestamps
+- Assign author credentials to each article
+- Configure automatic timestamp updates on content modification
+
+### 14. EEAT and Trust Signals
+
+**Finding:** Pages exhibit weak Expertise, Authoritativeness, and Trustworthiness (E-E-A-T) signals.
+
+**Deficiencies Identified:**
+- No visible expertise ownership
+- No accountable human authorship
+- Weak E-E-A-T implementation
+
+**Recommendation:**
+- Display author bylines prominently on all content pages
+- Link author names to professional bio/profile pages
+- Include author credentials and qualifications
+- Implement Author schema markup
+- Assign clear content ownership attribution
+
+### 15. Breadcrumb Navigation
+
+**Finding:** Breadcrumb implementation contains semantic errors.
+
+**Current Structure:**
+```
+Blog Home > Blog details > [Page Title]
+```
+
+**Recommendation:** Refactor breadcrumb hierarchy:
+```
+Blog > [Article Title]
+```
+- Replace generic "Blog details" with descriptive article title
+- Ensure consistent breadcrumb schema implementation
+
+### 16. Category Page Indexing
+
+**Finding:** Category pages contain no content but remain indexed.
+
+**Affected URLs:**
+- https://www.designmonk.co/projects-categories/legal-services
+- Additional blank category pages (similar pattern)
+
+**Recommendation:**
+- Apply `<meta name="robots" content="noindex,follow">` to all empty category pages
+- Alternatively, populate category pages with meaningful content or implement proper pagination
+- Remove blank category pages from XML sitemap
+
+---
+
+**Document Status:** Pending Review  
+**Distribution:** Internal

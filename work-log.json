@@ -43,10 +43,10 @@
     {
       "id": "2026-05-06",
       "date": "2026-05-06",
-      "hours": 0.3333333333333333,
+      "hours": 1,
       "category": "Research",
       "tasks": [
-        "Note Takes from home page and about us and team members"
+        "Some notes from which are related to development issues"
       ],
       "blockers": "None",
       "notes": "",
