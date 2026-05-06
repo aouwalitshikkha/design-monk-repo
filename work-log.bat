@@ -9,10 +9,10 @@ echo ============================================
 echo   Design Monk Work Log Manager
 echo ============================================
 echo.
-echo   [1] Add New Entry  (npm run log)
-echo   [2] Edit Entry     (npm run edit)
-echo   [3] Manage Tasks   (npm run task)
-echo   [4] Open Dashboard (index.html)
+echo   [1] Add New Entry
+echo   [2] Edit Entry
+echo   [3] Manage Tasks
+echo   [4] Open Dashboard
 echo   [5] Exit
 echo.
 echo ============================================
@@ -34,37 +34,34 @@ goto menu
 echo.
 echo Starting: Add New Entry...
 echo.
+cd app
 call npm run log
-echo.
-echo Press any key to return to menu...
-pause >nul
-goto menu
+cd ..
+exit
 
 :edit
 echo.
 echo Starting: Edit Entry...
 echo.
+cd app
 call npm run edit
-echo.
-echo Press any key to return to menu...
-pause >nul
-goto menu
+cd ..
+exit
 
 :tasks
 echo.
 echo Starting: Manage Tasks...
 echo.
+cd app
 call npm run task
-echo.
-echo Press any key to return to menu...
-pause >nul
-goto menu
+cd ..
+exit
 
 :dashboard
 echo.
 echo Opening Dashboard in browser...
-start index.html
-goto menu
+start app\index.html
+exit
 
 :exit
 echo.
