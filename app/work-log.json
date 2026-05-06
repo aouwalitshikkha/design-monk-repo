@@ -54,6 +54,18 @@
       "attachments": [
         "attachments/2026-05-06_note-06-05"
       ]
+    },
+    {
+      "id": "2026-05-6_1778055445976",
+      "date": "2026-05-6",
+      "hours": 2,
+      "category": "Research",
+      "tasks": [
+        "Note Take for developers",
+        "Check Different aspects of Website EEAT , Technical Issues"
+      ],
+      "blockers": "None",
+      "notes": "Messy Website"
     }
   ]
 }
