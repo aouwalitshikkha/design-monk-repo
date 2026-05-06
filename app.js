@@ -6,8 +6,8 @@
 const REPO_OWNER = 'aouwalitshikkha';
 const REPO_NAME = 'design-monk-repo';
 const BRANCH = 'main';
-const DATA_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/work-log.json`;
-const TASKS_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/tasks.json`;
+const DATA_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/app/work-log.json`;
+const TASKS_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/app/tasks.json`;
 const ATTACHMENT_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/app/attachments`;
 
 function fmtHours(n) {
