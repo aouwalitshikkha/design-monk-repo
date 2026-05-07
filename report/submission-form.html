@@ -28,7 +28,7 @@
 
     <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm mb-8">
       <h2 class="text-xl font-bold mb-4">Site-Specific Observations</h2>
-      <p class="text-gray-600 text-sm mb-6"><strong class="text-gray-800">Observation:</strong> The submission form functionality has not been verified. It is unknown whether form submissions are reaching the intended destination, whether validation works correctly, and how leads are managed after submission.</p>
+      <p class="text-gray-600 text-sm mb-6"><strong class="text-gray-800">Observation:</strong> The form has only an email field. Email validation must be confirmed — invalid email formats should be rejected with clear feedback. Additionally, how leads are captured and nurtured after submission needs to be documented.</p>
 
       <h3 class="font-bold text-gray-800 mb-4">Verification Checklist</h3>
       <div class="space-y-3 mb-6">
@@ -38,7 +38,7 @@
         </div>
         <div class="flex items-start gap-3 text-sm">
           <span class="w-6 h-6 bg-gray-100 border border-gray-300 rounded-lg flex items-center justify-center flex-shrink-0 font-bold text-gray-400">?</span>
-          <span class="text-gray-600">Are validation messages shown for empty or invalid fields?</span>
+          <span class="text-gray-600">Is email validation working? Invalid email formats should be rejected.</span>
         </div>
         <div class="flex items-start gap-3 text-sm">
           <span class="w-6 h-6 bg-gray-100 border border-gray-300 rounded-lg flex items-center justify-center flex-shrink-0 font-bold text-gray-400">?</span>
@@ -50,7 +50,7 @@
         </div>
         <div class="flex items-start gap-3 text-sm">
           <span class="w-6 h-6 bg-gray-100 border border-gray-300 rounded-lg flex items-center justify-center flex-shrink-0 font-bold text-gray-400">?</span>
-          <span class="text-gray-600">How are leads tracked and followed up?</span>
+          <span class="text-gray-600">How are leads nurtured after capture? Email sequence, phone call, or manual follow-up?</span>
         </div>
       </div>
 
@@ -87,24 +87,24 @@
         <div class="flex gap-4">
           <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0">1</span>
           <div>
-            <h3 class="font-bold text-gray-800 mb-2">Test Form Submission End-to-End</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Submit a test entry through every form on the site. Verify that data reaches the intended destination (email, CRM, database) and that confirmation messages display correctly.</p>
+            <h3 class="font-bold text-gray-800 mb-2">Implement Email Validation</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Add proper email format validation. Invalid emails (e.g., missing @, invalid domain) should be rejected with a clear error message before submission. Use both client-side and server-side validation.</p>
           </div>
         </div>
 
         <div class="flex gap-4">
           <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0">2</span>
           <div>
-            <h3 class="font-bold text-gray-800 mb-2">Document Lead Handling Process</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Establish and document how leads are managed: who receives notifications, response time targets, follow-up procedures, and how leads are tracked in the CRM or spreadsheet.</p>
+            <h3 class="font-bold text-gray-800 mb-2">Document Lead Capture &amp; Nurture Process</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Establish how captured leads are nurtured: welcome email sequence, CRM assignment, response time SLA, and follow-up cadence. Track conversion from form submission to qualified lead.</p>
           </div>
         </div>
 
         <div class="flex gap-4">
           <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0">3</span>
           <div>
-            <h3 class="font-bold text-gray-800 mb-2">Implement Error Handling &amp; Confirmation</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Add proper error handling for failed submissions and clear success/confirmation messages. Consider integrating with Google Analytics to track form submissions as conversions.</p>
+            <h3 class="font-bold text-gray-800 mb-2">Add Confirmation &amp; Tracking</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Show a confirmation message or thank-you page after successful submission. Integrate with Google Analytics to track form submissions as conversions and measure lead generation performance.</p>
           </div>
         </div>
       </div>
