@@ -66,6 +66,17 @@
       ],
       "blockers": "None",
       "notes": "Messy Website"
+    },
+    {
+      "id": "2026-05-07_1778141007897",
+      "date": "2026-05-07",
+      "hours": 1.5,
+      "category": "Meeting",
+      "tasks": [
+        "Meeting with Sajib Bhai 12.30pm to 2.00pm"
+      ],
+      "blockers": "None",
+      "notes": "Shows Some Major Technical Issues Here"
     }
   ]
 }
