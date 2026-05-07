@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Article Metadata — Design Monks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+
+  <div class="max-w-4xl mx-auto px-6 sm:px-8 py-12">
+
+    <a href="report-1.html" class="inline-flex items-center gap-2 text-gray-400 hover:text-gray-600 transition mb-8 text-sm">
+      <i class="fas fa-arrow-left"></i> Back to Technical SEO &amp; Site Architecture
+    </a>
+
+    <header class="mb-10">
+      <span class="inline-flex items-center gap-2 px-3 py-1 bg-rose-50 border border-rose-200 rounded-full text-xs font-medium text-rose-600 mb-4">
+        <i class="fas fa-times-circle text-rose-500 text-xs"></i> Missing
+      </span>
+      <h1 class="text-3xl font-extrabold mb-3">Article Open Graph Meta Data</h1>
+      <p class="text-gray-500">Single article pages lack required Open Graph article meta tags, reducing social sharing richness and discoverability.</p>
+    </header>
+
+    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm mb-8">
+      <h2 class="text-xl font-bold mb-4">Site-Specific Observations</h2>
+      <p class="text-gray-600 text-sm mb-6"><strong class="text-gray-800">Observation:</strong> Article pages are missing essential Open Graph metadata that platforms like Facebook, LinkedIn, and Twitter rely on for rich previews. The following tags are not present:</p>
+
+      <div class="bg-rose-50 border border-rose-100 rounded-xl p-4 mb-6">
+        <p class="text-xs font-semibold text-rose-700 mb-2">Missing Elements:</p>
+        <pre class="text-xs text-rose-600"><code>&lt;meta property="article:published_time" content="2026-05-05T10:55:15Z"&gt;
+&lt;meta property="article:modified_time" content="2026-05-05T10:55:15Z"&gt;
+&lt;meta property="article:author" content="Author Name"&gt;</code></pre>
+      </div>
+
+      <h3 class="font-bold text-gray-800 mb-4">Impact Assessment</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-3 px-4 font-semibold text-gray-700">Issue</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-700">Priority</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-700">Rationale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 px-4 font-medium text-gray-800">Missing published_time</td>
+              <td class="py-3 px-4"><span class="px-2 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded">Critical</span></td>
+              <td class="py-3 px-4 text-gray-500">Without published_time, platforms cannot determine content freshness, reducing social sharing quality.</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 px-4 font-medium text-gray-800">Missing modified_time</td>
+              <td class="py-3 px-4"><span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded">Warning</span></td>
+              <td class="py-3 px-4 text-gray-500">Updated content may not be reflected as fresh in social previews without modified_time.</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-medium text-gray-800">Missing article:author</td>
+              <td class="py-3 px-4"><span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded">Warning</span></td>
+              <td class="py-3 px-4 text-gray-500">Author attribution in social previews helps establish credibility and E-E-A-T signals.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-2xl p-8 shadow-sm mb-8">
+      <h2 class="text-xl font-bold mb-6">Recommendations</h2>
+
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0">1</span>
+          <div>
+            <h3 class="font-bold text-gray-800 mb-2">Implement All Article Meta Tags</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Add the complete set of Open Graph article meta tags with accurate timestamps and author information to every article page template.</p>
+            <pre class="bg-gray-900 text-gray-100 text-xs rounded-xl p-4 mt-2"><code>&lt;meta property="article:published_time" content="2026-05-05T10:55:15Z"&gt;
+&lt;meta property="article:modified_time" content="2026-05-05T10:55:15Z"&gt;
+&lt;meta property="article:author" content="Author Name"&gt;</code></pre>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0">2</span>
+          <div>
+            <h3 class="font-bold text-gray-800 mb-2">Configure Automatic Timestamp Updates</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Set up the CMS to automatically update <code>article:modified_time</code> whenever content is edited. This ensures social platforms always see the latest freshness signal.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0">3</span>
+          <div>
+            <h3 class="font-bold text-gray-800 mb-2">Assign Author Credentials</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Each article should have a named author with credentials. This supports E-E-A-T signals and improves trustworthiness in search results and social platforms.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="border-t border-gray-200 pt-8 pb-4 text-center text-sm text-gray-400">
+      <p>&copy; 2026 <a href="https://abdulaouwal.com" class="text-gray-500 hover:text-gray-700 transition">Abdul Aouwal</a> &mdash; All rights reserved.</p>
+    </footer>
+
+  </div>
+</body>
+</html>

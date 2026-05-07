@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Technical SEO Audit — Design Monks</title>
+  <title>Report 1 — Technical SEO &amp; Site Architecture — Design Monks</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -26,114 +26,104 @@
     <header class="mb-10">
       <span class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-xs font-medium text-blue-600 mb-4">
         <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
-        Report 1
+        Report 1 &mdash; May 8, 2026
       </span>
-      <h1 class="text-4xl font-extrabold mb-3">Technical SEO Audit</h1>
-      <p class="text-gray-500 text-lg">Sitemap configuration, canonical &amp; pagination, article metadata, breadcrumb fixes, form verification, and internal linking improvements</p>
+      <h1 class="text-4xl font-extrabold mb-3">Technical SEO &amp; Site Architecture</h1>
+      <p class="text-gray-500 text-lg">Sitemap configuration, pagination &amp; canonical fixes, robots meta directives, article metadata, breadcrumb navigation, and category page indexing</p>
     </header>
 
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
-        <span class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
-          <i class="fas fa-sitemap text-blue-600"></i>
+    <p class="text-gray-500 text-sm mb-8">This report covers 6 findings identified during the technical audit. Each finding includes a detailed breakdown of the issue, its impact, and actionable recommendations. Click any card to view the full analysis.</p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+
+      <a href="sitemap-issues.html" class="group bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-rose-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">MISSING</span>
+          <i class="fas fa-times-circle text-rose-500 text-xl"></i>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-rose-600 transition-colors">Sitemap &mdash; Missing &lt;lastmod&gt; Timestamps</h3>
+        <p class="text-gray-500 text-sm mb-4">XML sitemap exists but lacks <code>&lt;lastmod&gt;</code> elements, reducing crawl efficiency.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-rose-600 text-white text-xs font-bold rounded-lg hover:bg-rose-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
         </span>
-        Site Structure &amp; Configuration
-      </h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      </a>
 
-        <div class="bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">MISSING</span>
-            <i class="fas fa-times-circle text-rose-500 text-xl"></i>
-          </div>
-          <h3 class="font-bold text-gray-800 mb-2">Sitemap Configuration</h3>
-          <p class="text-gray-500 text-sm">No XML sitemap found. A sitemap is essential for helping search engines discover and index all important pages. It should include canonical URLs and be submitted to Google Search Console.</p>
+      <a href="pagination-canonical.html" class="group bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-rose-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">CRITICAL</span>
+          <i class="fas fa-times-circle text-rose-500 text-xl"></i>
         </div>
-
-        <div class="bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">CRITICAL</span>
-            <i class="fas fa-times-circle text-rose-500 text-xl"></i>
-          </div>
-          <h3 class="font-bold text-gray-800 mb-2">Pagination &amp; Canonical</h3>
-          <p class="text-gray-500 text-sm">Pagination and canonical implementations are missing or incorrect. Without proper canonical tags, search engines may treat paginated pages as duplicate content, diluting ranking signals.</p>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
-        <span class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
-          <i class="fas fa-newspaper text-purple-600"></i>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-rose-600 transition-colors">Pagination &amp; Canonical Issues</h3>
+        <p class="text-gray-500 text-sm mb-4">Multiple canonical URL variations, random query parameters, and missing rel prev/next.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-rose-600 text-white text-xs font-bold rounded-lg hover:bg-rose-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
         </span>
-        Article &amp; Content Issues
-      </h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      </a>
 
-        <div class="bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">MISSING</span>
-            <i class="fas fa-times-circle text-rose-500 text-xl"></i>
-          </div>
-          <h3 class="font-bold text-gray-800 mb-2">Article Meta Data</h3>
-          <p class="text-gray-500 text-sm">Published time and modified time are not present in the article schema. Search engines rely on this data for freshness signals and rich snippets. Add <code>datePublished</code> and <code>dateModified</code> properties.</p>
+      <a href="robots-meta.html" class="group bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-rose-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">MISSING</span>
+          <i class="fas fa-times-circle text-rose-500 text-xl"></i>
         </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-rose-600 transition-colors">Robots Meta Directive</h3>
+        <p class="text-gray-500 text-sm mb-4">No <code>&lt;meta name="robots"&gt;</code> directive detected. Article and category pages not properly configured.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-rose-600 text-white text-xs font-bold rounded-lg hover:bg-rose-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
 
-        <div class="bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">INCORRECT</span>
-            <i class="fas fa-times-circle text-rose-500 text-xl"></i>
-          </div>
-          <h3 class="font-bold text-gray-800 mb-2">Article Breadcrumb</h3>
-          <p class="text-gray-500 text-sm">Breadcrumb shows "Article Details" as the current page text. It should display the actual article title without a link. This improves user orientation and provides clearer navigation signals to search engines.</p>
+      <a href="article-metadata.html" class="group bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-rose-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">MISSING</span>
+          <i class="fas fa-times-circle text-rose-500 text-xl"></i>
         </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-rose-600 transition-colors">Article Open Graph Meta Data</h3>
+        <p class="text-gray-500 text-sm mb-4">Missing <code>article:published_time</code>, <code>article:modified_time</code>, and <code>article:author</code> tags.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-rose-600 text-white text-xs font-bold rounded-lg hover:bg-rose-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
 
-        <div class="bg-white border border-amber-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">WARNING</span>
-            <i class="fas fa-exclamation-circle text-amber-500 text-xl"></i>
-          </div>
-          <h3 class="font-bold text-gray-800 mb-2">End of Blog Category Linking</h3>
-          <p class="text-gray-500 text-sm">At the end of each blog post, the category name is displayed but not linked. Linking the category name improves internal crawlability and helps search engines understand content relationships.</p>
+      <a href="breadcrumb-issues.html" class="group bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-rose-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">INCORRECT</span>
+          <i class="fas fa-times-circle text-rose-500 text-xl"></i>
         </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-rose-600 transition-colors">Breadcrumb Navigation</h3>
+        <p class="text-gray-500 text-sm mb-4">Generic "Blog details" segment instead of actual article title. Semantic hierarchy needs fixing.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-rose-600 text-white text-xs font-bold rounded-lg hover:bg-rose-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
 
-        <div class="bg-white border border-amber-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">WARNING</span>
-            <i class="fas fa-exclamation-circle text-amber-500 text-xl"></i>
-          </div>
-          <h3 class="font-bold text-gray-800 mb-2">Submission Form Verification</h3>
-          <p class="text-gray-500 text-sm">The submission form functionality requires verification. Ensure form submissions are working correctly, validation is in place, and submitted data reaches the intended destination. Broken forms negatively impact conversion and user trust.</p>
+      <a href="category-indexing.html" class="group bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-rose-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">CRITICAL</span>
+          <i class="fas fa-times-circle text-rose-500 text-xl"></i>
         </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-rose-600 transition-colors">Category Page Indexing</h3>
+        <p class="text-gray-500 text-sm mb-4">Blank category pages remain indexed. Need noindex,follow and sitemap removal.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-rose-600 text-white text-xs font-bold rounded-lg hover:bg-rose-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
 
-      </div>
     </div>
 
     <div class="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-2xl p-7 mb-8 shadow-sm">
       <h3 class="text-lg font-bold mb-5 flex items-center gap-2">
         <i class="fas fa-lightbulb text-amber-500"></i>
-        Key Recommendations
+        Summary of Recommendations
       </h3>
       <div class="grid sm:grid-cols-2 gap-3 text-sm">
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">1</span>Create and submit an XML sitemap to Google Search Console</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">2</span>Implement proper canonical tags on all pages, especially paginated ones</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">3</span>Add <code>datePublished</code> and <code>dateModified</code> to article schema markup</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">4</span>Replace "Article Details" text in breadcrumb with the actual article title</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">5</span>Link category names at the end of blog posts to their respective category pages</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">6</span>Verify submission form functionality and add error handling</div>
-      </div>
-    </div>
-
-    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-12 shadow-sm">
-      <div class="flex items-start gap-4">
-        <div class="w-9 h-9 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
-          <i class="fas fa-triangle-exclamation text-amber-600"></i>
-        </div>
-        <div>
-          <h4 class="font-semibold text-amber-800 mb-2">Strategic Note</h4>
-          <p class="text-sm text-amber-800 leading-relaxed">These technical SEO issues should be addressed in order of priority. Start with sitemap configuration and canonical tags as they affect crawlability across the entire site, then move to article-level fixes. The form verification should be treated as a functional bug with potential SEO impact if users cannot complete intended actions.</p>
-        </div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">1</span>Add <code>&lt;lastmod&gt;</code> timestamps to all sitemap entries in ISO 8601 format</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">2</span>Implement self-referencing canonical on each pagination page; remove random query params</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">3</span>Add <code>rel="next"</code> and <code>rel="prev"</code> to pagination sequences</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">4</span>Add <code>&lt;meta name="robots" content="index,follow"&gt;</code> on article pages; <code>noindex,follow</code> on category pages</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">5</span>Implement <code>article:published_time</code>, <code>article:modified_time</code>, <code>article:author</code> meta tags</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">6</span>Fix breadcrumb: replace "Blog details" with actual article title</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">7</span>Set blank category pages to <code>noindex,follow</code> and remove from sitemap</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">8</span>Configure automatic lastmod/OG tag updates via CMS or build process</div>
       </div>
     </div>
 
