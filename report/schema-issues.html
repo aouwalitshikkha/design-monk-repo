@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Schema Markup — Design Monks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+
+  <div class="max-w-4xl mx-auto px-6 sm:px-8 py-12">
+
+    <a href="index.html" class="inline-flex items-center gap-2 text-gray-400 hover:text-gray-600 transition mb-8 text-sm">
+      <i class="fas fa-arrow-left"></i> Back to Reports
+    </a>
+
+    <header class="mb-10">
+      <span class="inline-flex items-center gap-2 px-3 py-1 bg-rose-50 border border-rose-200 rounded-full text-xs font-medium text-rose-600 mb-4">
+        <i class="fas fa-times-circle text-rose-500 text-xs"></i> Critical Issue
+      </span>
+      <h1 class="text-3xl font-extrabold mb-3">Schema Markup</h1>
+      <p class="text-gray-500">Structured data is missing or incomplete across key pages, limiting rich snippet eligibility and search visibility.</p>
+    </header>
+
+    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm mb-8">
+      <h2 class="text-xl font-bold mb-4">Site-Specific Observations</h2>
+
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-3 px-4 font-semibold text-gray-700">Issue</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-700">Priority</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-700">Rationale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 px-4 font-medium text-gray-800">General Schema Markup Missing</td>
+              <td class="py-3 px-4"><span class="px-2 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded">Critical</span></td>
+              <td class="py-3 px-4 text-gray-500">The site lacks fundamental schema markup (Organization, WebSite, breadcrumb). This limits rich snippet eligibility and weakens search presence.</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 px-4 font-medium text-gray-800">About Us Schema Missing</td>
+              <td class="py-3 px-4"><span class="px-2 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded">Critical</span></td>
+              <td class="py-3 px-4 text-gray-500">The About Us page has no structured data for team members or organization details. Implement Person or Organization schema to build authority signals.</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 px-4 font-medium text-gray-800">Team Members Page</td>
+              <td class="py-3 px-4"><span class="px-2 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded">Critical</span></td>
+              <td class="py-3 px-4 text-gray-500">Same issue as About Us. Each team member profile should include Person schema with name, job title, and social profile URLs (Behance, Dribbble, LinkedIn).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="font-bold text-gray-800 mb-4">Recommended Schema Types</h3>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-4">
+          <div class="font-bold text-sm text-blue-800 mb-1">Organization</div>
+          <p class="text-xs text-blue-600">For the site as a whole — name, logo, URL, social profiles</p>
+        </div>
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-4">
+          <div class="font-bold text-sm text-blue-800 mb-1">Person</div>
+          <p class="text-xs text-blue-600">For team members — name, job title, image, sameAs URLs</p>
+        </div>
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-4">
+          <div class="font-bold text-sm text-blue-800 mb-1">BreadcrumbList</div>
+          <p class="text-xs text-blue-600">For navigation paths across all pages</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-2xl p-8 shadow-sm mb-8">
+      <h2 class="text-xl font-bold mb-6">Recommendations</h2>
+
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0">1</span>
+          <div>
+            <h3 class="font-bold text-gray-800 mb-2">Implement Organization Schema on Homepage</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Add JSON-LD structured data with name, URL, logo, and social profile links. This is the foundation schema that all other schemas build upon.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0">2</span>
+          <div>
+            <h3 class="font-bold text-gray-800 mb-2">Add Person Schema to About Us &amp; Team Pages</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">For each team member, mark up with Person schema including name, job title, image, and sameAs URLs pointing to their Behance, Dribbble, and LinkedIn profiles. If exact profiles are unavailable, add whatever social/portfolio links exist.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0">3</span>
+          <div>
+            <h3 class="font-bold text-gray-800 mb-2">Validate with Google Rich Results Test</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">After implementation, validate all schema markup using Google's Rich Results Test tool. Fix any errors or warnings before deploying to production.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm mb-8">
+      <h2 class="text-xl font-bold mb-4">Schema Implementation Example</h2>
+      <pre class="bg-gray-900 text-gray-100 text-xs rounded-xl p-4 overflow-x-auto"><code>{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Design Monks",
+  "url": "https://designmonks.com",
+  "logo": "https://designmonks.com/logo.png",
+  "sameAs": [
+    "https://facebook.com/designmonks",
+    "https://dribbble.com/designmonks",
+    "https://linkedin.com/company/designmonks"
+  ]
+}</code></pre>
+    </div>
+
+    <footer class="border-t border-gray-200 pt-8 pb-4 text-center text-sm text-gray-400">
+      <p>&copy; 2026 <a href="https://abdulaouwal.com" class="text-gray-500 hover:text-gray-700 transition">Abdul Aouwal</a> &mdash; All rights reserved.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
