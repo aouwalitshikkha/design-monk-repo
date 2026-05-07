@@ -182,28 +182,26 @@
 
     </div>
 
-    <div class="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-2xl p-7 mb-8 shadow-sm">
-      <h3 class="text-lg font-bold mb-5 flex items-center gap-2">
-        <i class="fas fa-lightbulb text-amber-500"></i>
-        Summary of Recommendations
-      </h3>
-      <div class="grid sm:grid-cols-2 gap-3 text-sm">
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">1</span>Add <code>&lt;lastmod&gt;</code> timestamps to all sitemap entries in ISO 8601 format</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">2</span>Implement self-referencing canonical on each pagination page; remove random query params</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">3</span>Add <code>rel="next"</code> and <code>rel="prev"</code> to pagination sequences</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">4</span>Add <code>&lt;meta name="robots" content="index,follow"&gt;</code> on article pages; <code>noindex,follow</code> on category pages</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">5</span>Implement <code>article:published_time</code>, <code>article:modified_time</code>, <code>article:author</code> meta tags</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">6</span>Fix breadcrumb: replace "Blog details" with actual article title</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">7</span>Set blank category pages to <code>noindex,follow</code> and remove from sitemap</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">8</span>Remove empty categories entirely to prevent SEO dilution</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">9</span>Disable video autoplay or set to muted to improve UX and Core Web Vitals</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">10</span>Verify submission form functionality and lead handling process</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">11</span>Upload branded videos to YouTube to fix AI Overview reference issue</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">12</span>Add YouTube link to homepage and pages with social media links</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">13</span>Link category name at the end of blog posts to category page</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">14</span>Configure automatic lastmod/OG tag updates via CMS or build process</div>
+      <div class="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-2xl p-7 mb-8 shadow-sm">
+        <h3 class="text-lg font-bold mb-5 flex items-center gap-2">
+          <i class="fas fa-lightbulb text-amber-500"></i>
+          Summary of Recommendations
+        </h3>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">1</span><span>Add <code>&lt;lastmod&gt;</code> timestamps to all sitemap entries in ISO 8601 format and configure automatic updates</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">2</span><span>Remove sitewide homepage canonical from paginated pages; set section home page canonical (e.g., <code>/projects</code>, <code>/blog</code>) and add <code>rel="prev"/"next"</code></span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">3</span><span>Add <code>&lt;meta name="robots" content="index,follow"&gt;</code> on article pages and <code>noindex,follow</code> on category pages</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">4</span><span>Implement <code>article:published_time</code>, <code>article:modified_time</code>, and <code>article:author</code> Open Graph meta tags on all articles</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">5</span><span>Fix breadcrumb: replace static "Blog details" with dynamic article title in <code>Blog Home &gt; blog &gt; [title]</code> format</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">6</span><span>Apply <code>noindex,follow</code> to blank category pages and remove them from the XML sitemap</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">7</span><span>Delete all empty categories entirely to prevent SEO dilution and thin content signals</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">8</span><span>Disable video autoplay or set to muted to improve user experience and Core Web Vitals</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">9</span><span>Implement email format validation on the submission form and document the lead capture &amp; nurture process</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">10</span><span>Upload branded YouTube videos ("What is Design Monks", "How We Use AI", portfolio walkthroughs) to fix AI Overview unrelated video issue</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">11</span><span>Add YouTube link to all pages that display social media icons (homepage, About Us, footer, etc.)</span></div>
+          <div class="flex items-start gap-3"><span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">12</span><span>Link the category name at the end of each blog post to its category archive page for better crawlability</span></div>
+        </div>
       </div>
-    </div>
 
     <footer class="border-t border-gray-200 pt-8 pb-4 text-center text-sm text-gray-400">
       <p>&copy; 2026 <a href="https://abdulaouwal.com" class="text-gray-500 hover:text-gray-700 transition">Abdul Aouwal</a> &mdash; All rights reserved.</p>
