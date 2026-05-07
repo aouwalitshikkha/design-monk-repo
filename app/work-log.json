@@ -77,6 +77,22 @@
       ],
       "blockers": "None",
       "notes": "Shows Some Major Technical Issues Here"
+    },
+    {
+      "id": "2026-05-07_1778143074210",
+      "date": "2026-05-07",
+      "hours": 0.5,
+      "category": "Research",
+      "tasks": [
+        "Research about most visited post- https://www.designmonks.co/blog/what-is-the-smallest-font",
+        "Overlast 7 days and last 30 days Traffic is decreasing",
+        "Last Crawl date May 6, 2026 07:49:01 PM"
+      ],
+      "blockers": "None",
+      "notes": "Page is decreasing due to non update . it was last updated one years ago .meta title , meta description doesnt match with the article intent. Google is changing serp title",
+      "attachments": [
+        "attachments/2026-05-07_smallest-font.png"
+      ]
     }
   ]
 }
