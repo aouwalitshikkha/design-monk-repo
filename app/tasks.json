@@ -62,6 +62,13 @@
       "assignedDate": "2026-05-07",
       "completedDate": null,
       "status": "pending"
+    },
+    {
+      "id": "10",
+      "title": "Sitemap Config - Need to add <lastmod>",
+      "assignedDate": "2026-05-07",
+      "completedDate": null,
+      "status": "pending"
     }
   ]
 }
