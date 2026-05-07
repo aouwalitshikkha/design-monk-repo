@@ -32,7 +32,7 @@
       <p class="text-gray-500 text-lg">Sitemap configuration, pagination &amp; canonical fixes, robots meta directives, article metadata, breadcrumb navigation, and category page indexing</p>
     </header>
 
-    <p class="text-gray-500 text-sm mb-8">This report covers 7 findings identified during the technical audit. Each finding includes a detailed breakdown of the issue, its impact, and actionable recommendations. Click any card to view the full analysis.</p>
+    <p class="text-gray-500 text-sm mb-8">This report covers 12 findings identified during the technical audit. Each finding includes a detailed breakdown of the issue, its impact, and actionable recommendations. Click any card to view the full analysis.</p>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
 
@@ -120,6 +120,66 @@
         </span>
       </a>
 
+      <a href="video-autoplay.html" class="group bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-rose-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">CRITICAL</span>
+          <i class="fas fa-times-circle text-rose-500 text-xl"></i>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-rose-600 transition-colors">Video Autoplay &amp; UX</h3>
+        <p class="text-gray-500 text-sm mb-4">Autoplay functionality negatively impacts SEO and user experience. Disable or make it muted.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-rose-600 text-white text-xs font-bold rounded-lg hover:bg-rose-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="submission-form.html" class="group bg-white border border-amber-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-amber-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">WARNING</span>
+          <i class="fas fa-exclamation-circle text-amber-500 text-xl"></i>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-amber-600 transition-colors">Submission Form Verification</h3>
+        <p class="text-gray-500 text-sm mb-4">Form functionality requires verification. Check if it works and how leads are handled.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white text-xs font-bold rounded-lg hover:bg-amber-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="ai-overview.html" class="group bg-white border border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-rose-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full">CRITICAL</span>
+          <i class="fas fa-times-circle text-rose-500 text-xl"></i>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-rose-600 transition-colors">AI Overview Video Reference</h3>
+        <p class="text-gray-500 text-sm mb-4">AI Overview shows an unrelated video. Upload branded content like "What is Design Monks" to reclaim this space.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-rose-600 text-white text-xs font-bold rounded-lg hover:bg-rose-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="youtube-links.html" class="group bg-white border border-amber-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-amber-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">WARNING</span>
+          <i class="fas fa-exclamation-circle text-amber-500 text-xl"></i>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-amber-600 transition-colors">Missing YouTube Links</h3>
+        <p class="text-gray-500 text-sm mb-4">YouTube link should be added on homepage and other pages where social media links are provided.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white text-xs font-bold rounded-lg hover:bg-amber-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="blog-category-linking.html" class="group bg-white border border-amber-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-amber-300 hover:-translate-y-1 transition-all duration-300 block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">WARNING</span>
+          <i class="fas fa-exclamation-circle text-amber-500 text-xl"></i>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-2 group-hover:text-amber-600 transition-colors">Blog Category Not Linked</h3>
+        <p class="text-gray-500 text-sm mb-4">Category name at the end of blog posts is not linked. It should be linked for better crawlability.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white text-xs font-bold rounded-lg hover:bg-amber-700 transition">
+          Check Details <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
+
     </div>
 
     <div class="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-2xl p-7 mb-8 shadow-sm">
@@ -136,7 +196,12 @@
         <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">6</span>Fix breadcrumb: replace "Blog details" with actual article title</div>
         <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">7</span>Set blank category pages to <code>noindex,follow</code> and remove from sitemap</div>
         <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">8</span>Remove empty categories entirely to prevent SEO dilution</div>
-        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">9</span>Configure automatic lastmod/OG tag updates via CMS or build process</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">9</span>Disable video autoplay or set to muted to improve UX and Core Web Vitals</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">10</span>Verify submission form functionality and lead handling process</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">11</span>Upload branded videos to YouTube to fix AI Overview reference issue</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">12</span>Add YouTube link to homepage and pages with social media links</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">13</span>Link category name at the end of blog posts to category page</div>
+        <div class="flex items-start gap-3"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs flex-shrink-0 text-blue-600 font-bold">14</span>Configure automatic lastmod/OG tag updates via CMS or build process</div>
       </div>
     </div>
 
