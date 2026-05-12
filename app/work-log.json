@@ -104,6 +104,18 @@
       ],
       "blockers": "None",
       "notes": ""
+    },
+    {
+      "id": "2026-05-12_1778601422005",
+      "date": "2026-05-12",
+      "hours": 4.25,
+      "category": "Research",
+      "tasks": [
+        "Research how to change meta title",
+        "make a short script with ai for this"
+      ],
+      "blockers": "None",
+      "notes": "Make CSV file"
     }
   ]
 }
