@@ -145,7 +145,7 @@ class WorkLogApp {
     }
 
     const sorted = [...this.filteredEntries].sort((a, b) => b.date.localeCompare(a.date));
-    const limited = sorted.slice(0, 10);
+    const limited = sorted;
 
     container.innerHTML = limited.map(entry => `
         <div class="p-4 hover:bg-gray-50 transition-colors">
