@@ -116,6 +116,20 @@
       ],
       "blockers": "None",
       "notes": "Make CSV file"
+    },
+    {
+      "id": "Working with CTR Optimizations_1778861239280",
+      "date": "Working with CTR Optimizations",
+      "hours": 2,
+      "category": "Development",
+      "tasks": [
+        "Developed Scripts"
+      ],
+      "blockers": "none",
+      "notes": "Make CTR optimization",
+      "attachments": [
+        "attachments/Working with CTR Optimizations_2026-05-12-designmonks.xlsx"
+      ]
     }
   ]
 }
