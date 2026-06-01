@@ -127,6 +127,17 @@
       "notes": ""
     },
     {
+      "id": "2026-06-01_1780303940226",
+      "date": "2026-06-01",
+      "hours": 1.5,
+      "category": "Documentation",
+      "tasks": [
+        "Check declining page rising or not"
+      ],
+      "blockers": "Developers Task is not completed \\",
+      "notes": "Need to guide developers"
+    },
+    {
       "id": "Working with CTR Optimizations_1778861239280",
       "date": "Working with CTR Optimizations",
       "hours": 2,
